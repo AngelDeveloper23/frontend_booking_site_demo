@@ -9,10 +9,14 @@ import Box from '@mui/material/Box';
 import PeopleAltIcon from '@mui/icons-material/PeopleAltOutlined';
 import { Room } from '../types';
 
-export function RoomCard({ room }: { room: Room }) {
+export function RoomCard({ room, linkSearch }: { room: Room; linkSearch?: string }) {
   return (
     <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <CardActionArea component={RouterLink} to={`/rooms/${room.id}`} sx={{ flexGrow: 1, alignItems: 'stretch' }}>
+      <CardActionArea
+        component={RouterLink}
+        to={{ pathname: `/rooms/${room.id}`, search: linkSearch }}
+        sx={{ flexGrow: 1, alignItems: 'stretch' }}
+      >
         <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
           {room.imageUrl ? (
             <CardMedia component="img" image={room.imageUrl} alt={room.name} sx={{ aspectRatio: '4 / 3' }} />
@@ -20,7 +24,7 @@ export function RoomCard({ room }: { room: Room }) {
             <Box
               sx={{
                 aspectRatio: '4 / 3',
-                bgcolor: 'grey.100',
+                bgcolor: 'action.hover',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',

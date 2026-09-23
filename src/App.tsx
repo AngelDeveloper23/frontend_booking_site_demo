@@ -6,8 +6,14 @@ import { Home } from './pages/Home';
 import { RoomDetails } from './pages/RoomDetails';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
+import { MyReservations } from './pages/MyReservations';
+import { AdminDashboard } from './pages/admin/AdminDashboard';
 import { AdminRooms } from './pages/admin/AdminRooms';
+import { AdminReservations } from './pages/admin/AdminReservations';
+import { AdminUsers } from './pages/admin/AdminUsers';
+import { StaffDashboard } from './pages/staff/StaffDashboard';
 import { StaffRooms } from './pages/staff/StaffRooms';
+import { StaffReservations } from './pages/staff/StaffReservations';
 import { NotFound } from './pages/NotFound';
 
 export default function App() {
@@ -21,6 +27,22 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route
+            path="/my-reservations"
+            element={
+              <ProtectedRoute allow={['GUEST']}>
+                <MyReservations />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute allow={['ADMIN']}>
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="/admin/rooms"
             element={
               <ProtectedRoute allow={['ADMIN']}>
@@ -29,10 +51,42 @@ export default function App() {
             }
           />
           <Route
+            path="/admin/reservations"
+            element={
+              <ProtectedRoute allow={['ADMIN']}>
+                <AdminReservations />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/users"
+            element={
+              <ProtectedRoute allow={['ADMIN']}>
+                <AdminUsers />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/staff"
+            element={
+              <ProtectedRoute allow={['STAFF', 'ADMIN']}>
+                <StaffDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="/staff/rooms"
             element={
               <ProtectedRoute allow={['STAFF', 'ADMIN']}>
                 <StaffRooms />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/staff/reservations"
+            element={
+              <ProtectedRoute allow={['STAFF', 'ADMIN']}>
+                <StaffReservations />
               </ProtectedRoute>
             }
           />

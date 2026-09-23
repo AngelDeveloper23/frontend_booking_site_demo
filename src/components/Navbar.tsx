@@ -3,14 +3,20 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import HotelIcon from '@mui/icons-material/Hotel';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { useAuth } from '../context/AuthContext';
+import { useThemeMode } from '../context/ThemeModeContext';
 
 export function Navbar() {
   const { user, logout } = useAuth();
+  const { mode, toggleMode } = useThemeMode();
   const navigate = useNavigate();
 
   return (
@@ -33,16 +39,27 @@ export function Navbar() {
           <Button component={RouterLink} to="/" color="inherit" size="small">
             Search
           </Button>
+          {user?.role === 'GUEST' && (
+            <Button component={RouterLink} to="/my-reservations" color="inherit" size="small">
+              My Reservations
+            </Button>
+          )}
           {user?.role === 'ADMIN' && (
-            <Button component={RouterLink} to="/admin/rooms" color="inherit" size="small">
-              Manage Rooms
+            <Button component={RouterLink} to="/admin" color="inherit" size="small">
+              Dashboard
             </Button>
           )}
           {user?.role === 'STAFF' && (
-            <Button component={RouterLink} to="/staff/rooms" color="inherit" size="small">
-              Rooms Overview
+            <Button component={RouterLink} to="/staff" color="inherit" size="small">
+              Dashboard
             </Button>
           )}
+
+          <Tooltip title={mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}>
+            <IconButton onClick={toggleMode} color="inherit" size="small" aria-label="Toggle color mode">
+              {mode === 'dark' ? <LightModeIcon fontSize="small" /> : <DarkModeIcon fontSize="small" />}
+            </IconButton>
+          </Tooltip>
 
           {user ? (
             <Stack direction="row" spacing={1.5} alignItems="center" sx={{ ml: 1 }}>

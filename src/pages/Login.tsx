@@ -71,7 +71,7 @@ export function Login() {
         </Stack>
       </Box>
 
-      <Paper variant="outlined" sx={{ mt: 4, p: 2, bgcolor: 'grey.50' }}>
+      <Paper variant="outlined" sx={{ mt: 4, p: 2, bgcolor: 'action.hover' }}>
         <Typography variant="caption" fontWeight={700} display="block" gutterBottom>
           Demo accounts (password: Password123!)
         </Typography>

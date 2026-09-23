@@ -31,6 +31,11 @@ export function Home() {
 
   const today = startOfDay(new Date());
 
+  const roomLinkSearch =
+    hasSearched && checkIn && checkOut
+      ? `?checkIn=${format(checkIn, 'yyyy-MM-dd')}&checkOut=${format(checkOut, 'yyyy-MM-dd')}&guests=${guests}`
+      : undefined;
+
   useEffect(() => {
     listRooms()
       .then(setRooms)
@@ -176,7 +181,7 @@ export function Home() {
             }}
           >
             {rooms.map((room) => (
-              <RoomCard key={room.id} room={room} />
+              <RoomCard key={room.id} room={room} linkSearch={roomLinkSearch} />
             ))}
           </Box>
         )}
