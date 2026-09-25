@@ -6,6 +6,8 @@ import { Home } from './pages/Home';
 import { RoomDetails } from './pages/RoomDetails';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
+import { ForgotPassword } from './pages/ForgotPassword';
+import { ResetPassword } from './pages/ResetPassword';
 import { MyReservations } from './pages/MyReservations';
 import { AdminDashboard } from './pages/admin/AdminDashboard';
 import { AdminRooms } from './pages/admin/AdminRooms';
@@ -26,6 +28,8 @@ export default function App() {
           <Route path="/rooms/:id" element={<RoomDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route
             path="/my-reservations"
             element={

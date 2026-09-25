@@ -63,6 +63,10 @@ export function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
+          <Link component={RouterLink} to="/forgot-password" color="secondary" sx={{ alignSelf: 'flex-end' }}>
+            Forgot password?
+          </Link>
+
           {error && <Alert severity="error">{error}</Alert>}
 
           <Button type="submit" variant="contained" color="secondary" size="large" disabled={submitting}>
